@@ -262,28 +262,28 @@ spec:
         protectDefaultBranch: false
         repoVisibility: "public"
     # This action creates a new GitLab repository and publishes the files in the workspace directory to the repository.
-    - id: publish-gitlab
-      name: Publish Repository to GitLab
-      action: publish:gitlab
-      if: ${{ parameters.hostType === 'GitLab' }}
-      input:
-        allowedHosts: [ '${{ parameters.glHost }}' ]
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.glHost }}?owner=${{ parameters.glOwner }}&repo=${{ parameters.repoName }}
-        defaultBranch: ${{ parameters.branch }}
-        protectDefaultBranch: false
-        repoVisibility: "public"
-    - id: publish-bitbucket
-      name: Publish Repository to BitBucket
-      action: publish:bitbucketCloud
-      if: ${{ parameters.hostType === 'Bitbucket' }}
-      input:
-        allowedHosts: [ '${{ parameters.bbHost }}' ]
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.bbHost }}?owner=${{ parameters.bbOwner }}&repo=${{ parameters.repoName }}&project=${{ parameters.project }}&workspace=${{ parameters.workspace }}
-        defaultBranch: ${{ parameters.branch }}
-        protectDefaultBranch: false
-        repoVisibility: "public"
+#    - id: publish-gitlab
+#      name: Publish Repository to GitLab
+#      action: publish:gitlab
+#      if: ${{ parameters.hostType === 'GitLab' }}
+#      input:
+#        allowedHosts: [ '${{ parameters.glHost }}' ]
+#        description: This is ${{ parameters.name }}
+#        repoUrl: ${{ parameters.glHost }}?owner=${{ parameters.glOwner }}&repo=${{ parameters.repoName }}
+#        defaultBranch: ${{ parameters.branch }}
+#        protectDefaultBranch: false
+#        repoVisibility: "public"
+#    - id: publish-bitbucket
+#      name: Publish Repository to BitBucket
+#      action: publish:bitbucketCloud
+#      if: ${{ parameters.hostType === 'Bitbucket' }}
+#      input:
+#        allowedHosts: [ '${{ parameters.bbHost }}' ]
+#        description: This is ${{ parameters.name }}
+#        repoUrl: ${{ parameters.bbHost }}?owner=${{ parameters.bbOwner }}&repo=${{ parameters.repoName }}&project=${{ parameters.project }}&workspace=${{ parameters.workspace }}
+#        defaultBranch: ${{ parameters.branch }}
+#        protectDefaultBranch: false
+#        repoVisibility: "public"
 
     # The final step is to register our new component in the catalog.
     - id: fetch-gitops-skeleton
