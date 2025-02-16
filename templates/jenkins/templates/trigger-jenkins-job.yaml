@@ -1,0 +1,40 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: trigger-jenkins-job
+  title: Trigger Jenkins Job
+  description: Triggers a Jenkins job from Backstage.
+spec:
+  parameters:
+    - title: Jenkins Job Details
+      required: ['jenkinsUrl', 'jobName', 'token']
+      properties:
+        jenkinsUrl:
+          type: string
+          title: Jenkins URL
+          description: The base URL of the Jenkins instance.
+        jobName:
+          type: string
+          title: Job Name
+          description: The name of the Jenkins job to trigger.
+        token:
+          type: string
+          title: API Token
+          description: Jenkins API token for authentication.
+        parameters:
+          type: object
+          title: Job Parameters
+          description: Optional parameters for the Jenkins job.
+
+  steps:
+    - action: jenkins:trigger-job
+      id: trigger
+      input:
+        jenkinsUrl: ${{ parameters.jenkinsUrl }}
+        jobName: ${{ parameters.jobName }}
+        token: ${{ parameters.token }}
+        parameters: ${{ parameters.parameters }}
+
+  output:
+    jobName: ${{ parameters.jobName }}
+    message: "Triggered Jenkins job: ${{ parameters.jobName }}"
